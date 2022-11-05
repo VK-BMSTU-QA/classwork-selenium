@@ -1,5 +1,4 @@
 import pytest
-from selenium.webdriver.common.by import By
 from ui.pages.base_page import BasePage
 from ui.login_setup.base_case import BaseCase
 

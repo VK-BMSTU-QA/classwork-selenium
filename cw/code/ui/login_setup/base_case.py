@@ -1,7 +1,6 @@
 import pytest
 from _pytest.fixtures import FixtureRequest
 
-from ui.pages.login_page import LoginPage
 from ui.pages.base_page import BasePage
 
 
@@ -13,7 +12,6 @@ class BaseCase:
         self.driver = driver
         self.config = config
 
-        self.login_page = LoginPage(driver)
         self.base_page = BasePage(driver)
         if self.authorize:
             cookies = request.getfixturevalue('cookies')

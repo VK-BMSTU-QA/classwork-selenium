@@ -15,17 +15,17 @@ class BasePage(object):
     locators = locators.BasePageLocators()
     url = 'https://target-sandbox.my.com/'
 
-    def is_opened(self, timeout=15):
+    def is_opened(self, url, timeout=15):
         started = time.time()
         while time.time() - started < timeout:
-            if self.driver.current_url == self.url:
+            if self.driver.current_url == url:
                 return True
         raise PageNotOpenedExeption(
-            f'{self.url} did not open in {timeout} sec, current url {self.driver.current_url}')
+            f'{url} did not open in {timeout} sec, current url {self.driver.current_url}')
 
     def __init__(self, driver):
         self.driver = driver
-        self.is_opened()
+        self.is_opened(self.url)
 
     def wait(self, timeout=None):
         if timeout is None:
