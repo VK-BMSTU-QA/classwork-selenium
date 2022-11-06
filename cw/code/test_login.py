@@ -9,4 +9,4 @@ class TestLogin(BaseCase):
         login_page = LoginPage(self.driver)
         login_page.login(*credentials)
         assert str(self.driver.current_url) == 'https://target-sandbox.my.com/dashboard'
-        assert self.base_page.find(BasePage.locators.USERNAME).get_attribute('title') == credentials[0]
+        assert self.base_page.find(BasePage.locators.USERNAME, 15).get_attribute('title') == credentials[0]

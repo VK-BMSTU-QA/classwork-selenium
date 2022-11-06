@@ -35,6 +35,12 @@ class BasePage(object):
     def find(self, locator, timeout=None):
         return self.wait(timeout).until(EC.presence_of_element_located(locator))
 
+    def wait_visability_of_elem(self, locator, timeout=None):
+        return self.wait(timeout).until(EC.visibility_of_element_located(locator))
+
+    def find_all_elemets(self, locator, timeout=None):
+        return self.wait(timeout).until(EC.presence_of_all_elements_located(locator))
+
     def send_keys(self, element, keys):
         element.clear()
         element.send_keys(keys)
@@ -43,3 +49,8 @@ class BasePage(object):
         self.find(locator, timeout=timeout)
         elem = self.wait(timeout).until(EC.element_to_be_clickable(locator))
         elem.click()
+    
+    def elem_click(self, elem, timeout=None) -> WebElement:
+        self.wait(timeout).until(EC.element_to_be_clickable(elem))
+        elem.click()
+

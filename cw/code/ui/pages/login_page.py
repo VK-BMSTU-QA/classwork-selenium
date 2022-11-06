@@ -1,6 +1,3 @@
-import time
-from selenium.webdriver.common.by import By
-
 from ui.locators import locators
 from ui.pages.base_page import BasePage
 
