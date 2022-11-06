@@ -26,19 +26,19 @@ def authorize(my_driver):
     driver.get("https://target-sandbox.my.com/")
     time.sleep(10)
 
-    element = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[1]/div/div/div/div/div/div[2]/div/div[1]")
-    element.click()
+    login_button = driver.find_element(By.XPATH, "/html/body/div[1]/div[1]/div[1]/div/div/div/div/div/div[2]/div/div[1]")
+    login_button.click()
 
-    element1 = driver.find_element(By.NAME, "email")
-    element1.clear()
-    element1.send_keys(email)
+    email_input = driver.find_element(By.NAME, "email")
+    email_input.clear()
+    email_input.send_keys(email)
 
-    element2 = driver.find_element(By.NAME, "password")
-    element2.clear()
-    element2.send_keys(password)
+    password_input = driver.find_element(By.NAME, "password")
+    password_input.clear()
+    password_input.send_keys(password)
 
-    element3 = driver.find_element(By.XPATH, "/html/body/div[2]/div[1]/div[2]/div/div[4]/div[1]")
-    element3.click()
+    yet_login_button = driver.find_element(By.XPATH, "/html/body/div[2]/div[1]/div[2]/div/div[4]/div[1]")
+    yet_login_button.click()
 
 
 class Authorize(unittest.TestCase):
@@ -65,19 +65,19 @@ class CheckHeader(unittest.TestCase):
 
         time.sleep(10)
 
-        element4 = driver.find_element(
+        billing = driver.find_element(
             By.XPATH,
             '//a[@href="/billing"]'
         )
-        element4.click()
+        billing.click()
 
         time.sleep(10)
 
-        element51 = driver.find_element(
+        profile = driver.find_element(
             By.XPATH,
             '//a[@href="/profile"]'
         )
-        element51.click()
+        profile.click()
 
     def tearDown(self):
         self.driver.close()
@@ -94,21 +94,21 @@ class EditContact(unittest.TestCase):
 
         driver.get("https://target-sandbox.my.com/profile/contacts")
         time.sleep(5)
-        element5 = driver.find_element(
+        FIO_input = driver.find_element(
             By.XPATH,
             "/html/body/div[1]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/ul/li[2]/div[1]/div/div/"
             "input"
         )
-        element5.clear()
-        element5.send_keys("Голубев Сергей Николаевич")
+        FIO_input.clear()
+        FIO_input.send_keys("Голубев Сергей Николаевич")
 
         time.sleep(2)
 
-        element6 = driver.find_element(
+        save_button = driver.find_element(
             By.XPATH,
             "/html/body/div[1]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div[4]/button"
         )
-        element6.click()
+        save_button.click()
 
     def tearDown(self):
         self.driver.close()
@@ -119,23 +119,23 @@ class ChangingSubscriptions(unittest.TestCase):
     def setUp(self):
         self.driver = webdriver.Chrome(service=ChromeService(ChromeDriverManager().install()))
 
-    def test_check_header(self):
+    def test_changing_subscriptions(self):
         driver = self.driver
         authorize(driver)
 
         driver.get("https://target-sandbox.my.com/profile/notifications")
         time.sleep(5)
 
-        element7 = driver.find_element(By.ID, "notifications-event")
-        element7.click()
+        change_moderation = driver.find_element(By.ID, "notifications-event")
+        change_moderation.click()
 
         time.sleep(2)
 
-        element8 = driver.find_element(
+        save_button = driver.find_element(
             By.XPATH,
             "/html/body/div[1]/div[2]/div[1]/div/div[2]/div[2]/div[2]/div/div[1]/div[2]/div/div/div[8]/button"
         )
-        element8.click()
+        save_button.click()
 
 
     def tearDown(self):
