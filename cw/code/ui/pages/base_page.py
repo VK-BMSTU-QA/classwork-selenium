@@ -4,18 +4,18 @@ from selenium.webdriver.remote.webelement import WebElement
 from ui.locators import locators
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.keys import Keys
+
 
 class PageNotOpenedExeption(Exception):
     pass
 
 
 class BasePage(object):
-
+    default_timeout = 15
     locators = locators.BasePageLocators()
     url = 'https://target-sandbox.my.com/'
 
-    def is_opened(self, url, timeout=15):
+    def is_opened(self, url, timeout=None):
         started = time.time()
         while time.time() - started < timeout:
             if self.driver.current_url == url:
@@ -25,7 +25,7 @@ class BasePage(object):
 
     def __init__(self, driver):
         self.driver = driver
-        self.is_opened(self.url)
+        self.is_opened(self.url, self.default_timeout)
 
     def wait(self, timeout=None):
         if timeout is None:
@@ -49,8 +49,8 @@ class BasePage(object):
         self.find(locator, timeout=timeout)
         elem = self.wait(timeout).until(EC.element_to_be_clickable(locator))
         elem.click()
-    
-    def elem_click(self, elem, timeout=None) -> WebElement:
+        return elem
+
+    def elem_click(self, elem, timeout=None):
         self.wait(timeout).until(EC.element_to_be_clickable(elem))
         elem.click()
-

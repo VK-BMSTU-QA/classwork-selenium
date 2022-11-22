@@ -21,6 +21,3 @@ class BaseCase:
                 self.driver.add_cookie(cookie)
 
             self.driver.refresh()
-
-
-

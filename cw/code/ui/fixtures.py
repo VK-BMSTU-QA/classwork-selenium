@@ -6,11 +6,14 @@ from webdriver_manager.firefox import GeckoDriverManager
 from ui.pages.login_page import LoginPage
 from ui.pages.base_page import BasePage
 
+
 def get_driver(browser_name):
     if browser_name == 'chrome':
-        browser = webdriver.Chrome(executable_path=ChromeDriverManager().install())
+        browser = webdriver.Chrome(
+            executable_path=ChromeDriverManager().install())
     elif browser_name == 'firefox':
-        browser = webdriver.Firefox(executable_path=GeckoDriverManager().install())
+        browser = webdriver.Firefox(
+            executable_path=GeckoDriverManager().install())
     else:
         raise RuntimeError(f'Unsupported browser: "{browser_name}"')
     browser.maximize_window()
@@ -43,6 +46,7 @@ def driver(config):
 def base_page(driver):
     return BasePage(driver=driver)
 
+
 @pytest.fixture(scope='session')
 def credentials():
     with open('/home/ns/tp/qa/creds', 'r') as f:
@@ -62,4 +66,3 @@ def cookies(credentials, config):
     cookies = driver.get_cookies()
     driver.quit()
     return cookies
-

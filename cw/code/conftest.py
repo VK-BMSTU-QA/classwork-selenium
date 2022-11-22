@@ -2,6 +2,7 @@ import pytest
 
 from ui.fixtures import *
 
+
 def pytest_addoption(parser):
     parser.addoption('--browser', default='chrome')
     parser.addoption('--url', default='https://target-sandbox.my.com/')
