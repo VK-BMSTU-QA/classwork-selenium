@@ -138,4 +138,4 @@ dmypy.json
 *.sublime-workspace
 
 .vscode/
-*.code-workspace
+*.code-workspace/

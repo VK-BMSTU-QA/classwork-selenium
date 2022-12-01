@@ -17,5 +17,3 @@ class TestEditContact(BaseCase):
         self.page.click(self.page.locators.FOLLOW_BUTTON)
         self.page.click(self.page.locators.CHANGE_MODERATION)
         self.page.click(self.page.locators.SAVE_BUTTON)
-        time.sleep(20)
-
